@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>神秘算命牌卡</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 背景音樂 -->
+  <audio id="bg-music" src="music.mp4" autoplay loop></audio>
+
+  <!-- 主畫面 -->
+  <div class="container">
+    <h1>🔮 抽一張命運牌 🔮</h1>
+    <button onclick="drawCard()">點我抽牌</button>
+
+    <!-- 抽牌顯示區塊 -->
+    <div id="card-container" class="hidden">
+      <h2 id="card-name"></h2>
+      <img id="card-image" src="" alt="抽到的牌卡"/>
+      <p id="card-description"></p>
+      <p><strong>指引：</strong> <span id="card-advice"></span></p>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
