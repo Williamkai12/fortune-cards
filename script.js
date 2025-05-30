@@ -214,6 +214,16 @@ const cards = [
 
 let drawn = false;
 
+// 🔁 切換畫面（開始抽牌）
+document.getElementById("start-btn").addEventListener("click", () => {
+  document.getElementById("intro-page").classList.add("hidden");
+  document.getElementById("draw-page").classList.remove("hidden");
+});
+
+// 🃏 綁定抽牌按鈕
+document.getElementById("draw-btn").addEventListener("click", drawCard);
+
+// 🪄 抽牌函式
 function drawCard() {
   if (drawn) {
     alert("你只能抽一次牌！");
@@ -224,19 +234,20 @@ function drawCard() {
   const drawBtn = document.getElementById("draw-btn");
   const cardContainer = document.getElementById("card-container");
 
-  drawBtn.style.display = "none"; // 隱藏按鈕
+  drawBtn.style.display = "none";
   cardContainer.classList.add("hidden");
 
-  // 顯示影片播放動畫
+  // 播放影片動畫
   if (video) {
     video.classList.remove("hidden");
     video.currentTime = 0;
     video.play().catch(e => console.warn("影片播放失敗:", e));
   }
 
-  // 等待 5 秒顯示卡片
+  // ⏳ 等待 5 秒後顯示抽到的牌
   setTimeout(() => {
     const card = cards[Math.floor(Math.random() * cards.length)];
+
     document.getElementById("card-name").textContent = card.name;
     document.getElementById("card-image").src = card.img;
     document.getElementById("card-description").textContent = card.desc;
