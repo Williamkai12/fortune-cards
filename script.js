@@ -217,7 +217,6 @@ let drawn = false;
 function resetCard() {
   drawn = false;
 
-  // 清空牌卡內容
   const name = document.getElementById("card-name");
   const image = document.getElementById("card-image");
   const desc = document.getElementById("card-description");
@@ -233,16 +232,11 @@ function resetCard() {
   if (container) container.classList.add("hidden");
   if (soulMessage) soulMessage.classList.add("hidden");
 
-  // 音樂播放（如果尚未播放）
   if (bgMusic && bgMusic.paused) {
     bgMusic.play().catch(e => {
       console.warn("音樂播放被阻擋:", e);
     });
   }
 
-  // 自動抽牌
   drawCard();
-
-  // 顯示靈魂訊息區塊
-  if (soulMessage) soulMessage.classList.remove("hidden");
 }
