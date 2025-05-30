@@ -1,3 +1,6 @@
+// ✅ 驗證載入
+console.log("✅ script.js 正常載入");
+
 const cards = [
   {
     name: '穿越的召喚',
@@ -214,16 +217,16 @@ const cards = [
 
 let drawn = false;
 
-// 🔁 切換畫面（開始抽牌）
+// ▶️ 開始抽牌：切換畫面
 document.getElementById("start-btn").addEventListener("click", () => {
   document.getElementById("intro-page").classList.add("hidden");
   document.getElementById("draw-page").classList.remove("hidden");
 });
 
-// 🃏 綁定抽牌按鈕
+// 🎯 綁定抽牌按鈕
 document.getElementById("draw-btn").addEventListener("click", drawCard);
 
-// 🪄 抽牌函式
+// 🪄 抽牌邏輯
 function drawCard() {
   if (drawn) {
     alert("你只能抽一次牌！");
@@ -237,14 +240,13 @@ function drawCard() {
   drawBtn.style.display = "none";
   cardContainer.classList.add("hidden");
 
-  // 播放影片動畫
   if (video) {
     video.classList.remove("hidden");
     video.currentTime = 0;
     video.play().catch(e => console.warn("影片播放失敗:", e));
   }
 
-  // ⏳ 等待 5 秒後顯示抽到的牌
+  // 延遲顯示抽到的牌
   setTimeout(() => {
     const card = cards[Math.floor(Math.random() * cards.length)];
 
@@ -255,6 +257,7 @@ function drawCard() {
 
     cardContainer.classList.remove("hidden");
 
+    // 播音樂（如果被暫停）
     const bgMusic = document.getElementById("bg-music");
     if (bgMusic && bgMusic.paused) {
       bgMusic.play().catch(e => console.warn("音樂播放失敗:", e));
