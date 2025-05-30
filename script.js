@@ -220,70 +220,40 @@ function drawCard() {
     return;
   }
 
-  const card = cards[Math.floor(Math.random() * cards.length)];
-
-  const name = document.getElementById("card-name");
-  const image = document.getElementById("card-image");
-  const desc = document.getElementById("card-description");
-  const advice = document.getElementById("card-advice");
-  const container = document.getElementById("card-container");
-  const bgMusic = document.getElementById("bg-music");
   const video = document.getElementById("draw-video");
   const drawBtn = document.getElementById("draw-btn");
+  const cardContainer = document.getElementById("card-container");
 
-  // 隱藏卡片與按鈕
-  if (container) container.classList.add("hidden");
-  if (drawBtn) drawBtn.disabled = true;
-
-  // 播放影片重置
+  // 顯示並播放影片
   if (video) {
+    video.classList.remove("hidden");
     video.currentTime = 0;
     video.play().catch(e => console.warn("影片播放被阻擋:", e));
   }
 
-  // 延遲5秒後顯示卡片
-  setTimeout(() => {
-    if (name) name.textContent = card.name;
-    if (image) image.src = card.img;
-    if (desc) desc.textContent = card.desc;
-    if (advice) advice.textContent = card.advice;
-    if (container) container.classList.remove("hidden");
+  drawBtn.style.display = "none";
+  cardContainer.classList.add("hidden");
 
-    // 確保音樂播放
+  setTimeout(() => {
+    const card = cards[Math.floor(Math.random() * cards.length)];
+
+    document.getElementById("card-name").textContent = card.name;
+    document.getElementById("card-image").src = card.img;
+    document.getElementById("card-description").textContent = card.desc;
+    document.getElementById("card-advice").textContent = card.advice;
+    cardContainer.classList.remove("hidden");
+
+    // 停止並隱藏影片
+    if (video) {
+      video.pause();
+      video.classList.add("hidden");
+    }
+
+    const bgMusic = document.getElementById("bg-music");
     if (bgMusic && bgMusic.paused) {
-      bgMusic.play().catch(e => {
-        console.warn("音樂播放被阻擋:", e);
-      });
+      bgMusic.play().catch(e => console.warn("音樂播放被阻擋:", e));
     }
 
     drawn = true;
-  }, 5000); // 5000ms = 5秒
+  }, 5000);
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ script loaded");
-
-  const drawBtn = document.getElementById("draw-btn");
-  const startBtn = document.getElementById("start-btn");
-
-  if (startBtn) {
-    console.log("✅ startBtn found");
-    startBtn.addEventListener("click", () => {
-      console.log("🎬 開始抽牌 clicked");
-      document.getElementById("intro-page").classList.add("hidden");
-      document.getElementById("draw-page").classList.remove("hidden");
-
-      const video = document.getElementById("draw-video");
-      if (video) {
-        video.currentTime = 0;
-        video.play().catch(e => console.warn("影片播放被阻擋:", e));
-      }
-    });
-  } else {
-    console.warn("⛔️ startBtn NOT found");
-  }
-
-  if (drawBtn) {
-    drawBtn.addEventListener("click", drawCard);
-  }
-});
