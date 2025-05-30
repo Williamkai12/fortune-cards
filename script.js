@@ -238,5 +238,30 @@ function resetCard() {
     });
   }
 
-  drawCard();
+  drawCard(); // 呼叫外面的 drawCard
+}
+
+function drawCard() {
+  if (drawn) {
+    alert("你只能抽一次牌！");
+    return;
+  }
+
+  const card = cards[Math.floor(Math.random() * cards.length)];
+
+  const name = document.getElementById("card-name");
+  const image = document.getElementById("card-image");
+  const desc = document.getElementById("card-description");
+  const advice = document.getElementById("card-advice");
+  const container = document.getElementById("card-container");
+  const soulMessage = document.getElementById("soul-message");
+
+  if (name) name.textContent = card.name;
+  if (image) image.src = card.img;
+  if (desc) desc.textContent = card.desc;
+  if (advice) advice.textContent = card.advice;
+  if (container) container.classList.remove("hidden");
+  if (soulMessage) soulMessage.classList.remove("hidden");
+
+  drawn = true;
 }
