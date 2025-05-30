@@ -224,34 +224,29 @@ function drawCard() {
   const drawBtn = document.getElementById("draw-btn");
   const cardContainer = document.getElementById("card-container");
 
-  // 顯示並播放影片
+  drawBtn.style.display = "none"; // 隱藏按鈕
+  cardContainer.classList.add("hidden");
+
+  // 顯示影片播放動畫
   if (video) {
     video.classList.remove("hidden");
     video.currentTime = 0;
-    video.play().catch(e => console.warn("影片播放被阻擋:", e));
+    video.play().catch(e => console.warn("影片播放失敗:", e));
   }
 
-  drawBtn.style.display = "none";
-  cardContainer.classList.add("hidden");
-
+  // 等待 5 秒顯示卡片
   setTimeout(() => {
     const card = cards[Math.floor(Math.random() * cards.length)];
-
     document.getElementById("card-name").textContent = card.name;
     document.getElementById("card-image").src = card.img;
     document.getElementById("card-description").textContent = card.desc;
     document.getElementById("card-advice").textContent = card.advice;
-    cardContainer.classList.remove("hidden");
 
-    // 停止並隱藏影片
-    if (video) {
-      video.pause();
-      video.classList.add("hidden");
-    }
+    cardContainer.classList.remove("hidden");
 
     const bgMusic = document.getElementById("bg-music");
     if (bgMusic && bgMusic.paused) {
-      bgMusic.play().catch(e => console.warn("音樂播放被阻擋:", e));
+      bgMusic.play().catch(e => console.warn("音樂播放失敗:", e));
     }
 
     drawn = true;
