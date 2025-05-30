@@ -4,6 +4,8 @@ body {
   background-image: url('bg.jpg');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;     /* ✅ 防止背景重複 */
+  background-attachment: fixed;     /* ✅ 固定背景避免滑動時重複出現 */
   color: white;
   text-align: center;
   padding: 2rem;

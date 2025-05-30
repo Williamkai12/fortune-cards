@@ -215,6 +215,14 @@ const cards = [
 let drawn = false;
 
 function drawCard() {
+  // 觸發音樂播放（只有使用者互動後瀏覽器才允許播放）
+  const bgMusic = document.getElementById('bg-music');
+  if (bgMusic && bgMusic.paused) {
+    bgMusic.play().catch(e => {
+      console.warn('音樂播放被瀏覽器阻擋:', e);
+    });
+  }
+
   if (drawn) {
     alert('你只能抽一次牌！');
     return;
@@ -229,12 +237,4 @@ function drawCard() {
   document.getElementById('card-container').classList.remove('hidden');
 
   drawn = true;
-}
-function resetCard() {
-  drawn = false;
-  document.getElementById("card-name").textContent = "";
-  document.getElementById("card-image").src = "";
-  document.getElementById("card-description").textContent = "";
-  document.getElementById("card-advice").textContent = "";
-  document.getElementById("card-container").classList.add("hidden");
 }
