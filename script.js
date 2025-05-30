@@ -234,4 +234,5 @@ function resetCard() {
 
   // 🔁 自動再抽一張牌
   drawCard();
+  document.getElementById("soul-message").classList.remove("hidden");
 }
