@@ -235,7 +235,7 @@ function drawCard() {
   if (advice) advice.textContent = card.advice;
   if (container) container.classList.remove("hidden");
 
-  // 播放背景音樂（應對瀏覽器限制）
+  // 確保音樂播放
   if (bgMusic && bgMusic.paused) {
     bgMusic.play().catch(e => {
       console.warn("音樂播放被阻擋:", e);
@@ -251,12 +251,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const drawBtn = document.getElementById("draw-btn");
   const startBtn = document.getElementById("start-btn");
 
-  if (drawBtn) drawBtn.addEventListener("click", drawCard);
-
+  // 開始抽牌頁
   if (startBtn) {
     startBtn.addEventListener("click", () => {
       document.getElementById("intro-page").classList.add("hidden");
       document.getElementById("draw-page").classList.remove("hidden");
+
+      // 確保影片從頭播放（若需要）
+      const video = document.getElementById("draw-video");
+      if (video) {
+        video.currentTime = 0;
+        video.play().catch(e => console.warn("影片播放被阻擋:", e));
+      }
     });
+  }
+
+  // 抽牌行為
+  if (drawBtn) {
+    drawBtn.addEventListener("click", drawCard);
   }
 });
