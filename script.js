@@ -214,33 +214,6 @@ const cards = [
 
 let drawn = false;
 
-function resetCard() {
-  drawn = false;
-
-  const name = document.getElementById("card-name");
-  const image = document.getElementById("card-image");
-  const desc = document.getElementById("card-description");
-  const advice = document.getElementById("card-advice");
-  const container = document.getElementById("card-container");
-  const soulMessage = document.getElementById("soul-message");
-  const bgMusic = document.getElementById("bg-music");
-
-  if (name) name.textContent = "";
-  if (image) image.src = "";
-  if (desc) desc.textContent = "";
-  if (advice) advice.textContent = "";
-  if (container) container.classList.add("hidden");
-  if (soulMessage) soulMessage.classList.add("hidden");
-
-  if (bgMusic && bgMusic.paused) {
-    bgMusic.play().catch(e => {
-      console.warn("音樂播放被阻擋:", e);
-    });
-  }
-
-  drawCard(); // 呼叫外面的 drawCard
-}
-
 function drawCard() {
   if (drawn) {
     alert("你只能抽一次牌！");
@@ -265,3 +238,39 @@ function drawCard() {
 
   drawn = true;
 }
+
+function resetCard() {
+  drawn = false;
+
+  const name = document.getElementById("card-name");
+  const image = document.getElementById("card-image");
+  const desc = document.getElementById("card-description");
+  const advice = document.getElementById("card-advice");
+  const container = document.getElementById("card-container");
+  const soulMessage = document.getElementById("soul-message");
+  const bgMusic = document.getElementById("bg-music");
+
+  if (name) name.textContent = "";
+  if (image) image.src = "";
+  if (desc) desc.textContent = "";
+  if (advice) advice.textContent = "";
+  if (container) container.classList.add("hidden");
+  if (soulMessage) soulMessage.classList.add("hidden");
+
+  if (bgMusic && bgMusic.paused) {
+    bgMusic.play().catch(e => {
+      console.warn("音樂播放被阻擋:", e);
+    });
+  }
+
+  drawCard(); // 自動再抽一張牌
+}
+
+// ✅ 綁定按鈕事件（支援 CodePen / GitHub Pages）
+document.addEventListener("DOMContentLoaded", () => {
+  const drawBtn = document.getElementById("draw-btn");
+  const resetBtn = document.getElementById("reset-btn");
+
+  if (drawBtn) drawBtn.addEventListener("click", drawCard);
+  if (resetBtn) resetBtn.addEventListener("click", resetCard);
+});
