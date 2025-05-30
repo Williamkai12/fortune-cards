@@ -228,21 +228,36 @@ function drawCard() {
   const advice = document.getElementById("card-advice");
   const container = document.getElementById("card-container");
   const bgMusic = document.getElementById("bg-music");
+  const video = document.getElementById("draw-video");
+  const drawBtn = document.getElementById("draw-btn");
 
-  if (name) name.textContent = card.name;
-  if (image) image.src = card.img;
-  if (desc) desc.textContent = card.desc;
-  if (advice) advice.textContent = card.advice;
-  if (container) container.classList.remove("hidden");
+  // 隱藏卡片與按鈕
+  if (container) container.classList.add("hidden");
+  if (drawBtn) drawBtn.disabled = true;
 
-  // 確保音樂播放
-  if (bgMusic && bgMusic.paused) {
-    bgMusic.play().catch(e => {
-      console.warn("音樂播放被阻擋:", e);
-    });
+  // 播放影片重置
+  if (video) {
+    video.currentTime = 0;
+    video.play().catch(e => console.warn("影片播放被阻擋:", e));
   }
 
-  drawn = true;
+  // 延遲5秒後顯示卡片
+  setTimeout(() => {
+    if (name) name.textContent = card.name;
+    if (image) image.src = card.img;
+    if (desc) desc.textContent = card.desc;
+    if (advice) advice.textContent = card.advice;
+    if (container) container.classList.remove("hidden");
+
+    // 確保音樂播放
+    if (bgMusic && bgMusic.paused) {
+      bgMusic.play().catch(e => {
+        console.warn("音樂播放被阻擋:", e);
+      });
+    }
+
+    drawn = true;
+  }, 5000); // 5000ms = 5秒
 }
 
 document.addEventListener("DOMContentLoaded", () => {
