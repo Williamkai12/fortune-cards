@@ -220,22 +220,14 @@ function drawCard() {
     return;
   }
 
-  // 🔊 確保點擊時觸發音樂
-  const bgMusic = document.getElementById("bg-music");
-  if (bgMusic && bgMusic.paused) {
-    bgMusic.play().catch(e => {
-      console.warn("音樂播放被阻擋:", e);
-    });
-  }
-
   const card = cards[Math.floor(Math.random() * cards.length)];
-
   const name = document.getElementById("card-name");
   const image = document.getElementById("card-image");
   const desc = document.getElementById("card-description");
   const advice = document.getElementById("card-advice");
   const container = document.getElementById("card-container");
   const soulMessage = document.getElementById("soul-message");
+  const bgMusic = document.getElementById("bg-music");
 
   if (name) name.textContent = card.name;
   if (image) image.src = card.img;
@@ -244,5 +236,16 @@ function drawCard() {
   if (container) container.classList.remove("hidden");
   if (soulMessage) soulMessage.classList.remove("hidden");
 
+  if (bgMusic && bgMusic.paused) {
+    bgMusic.play().catch(e => {
+      console.warn("背景音樂播放被阻擋:", e);
+    });
+  }
+
   drawn = true;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const drawBtn = document.getElementById("draw-btn");
+  if (drawBtn) drawBtn.addEventListener("click", drawCard);
+});
