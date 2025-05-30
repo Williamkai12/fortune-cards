@@ -218,21 +218,31 @@ function resetCard() {
   drawn = false;
 
   // 清空牌卡內容
-  document.getElementById("card-name").textContent = "";
-  document.getElementById("card-image").src = "";
-  document.getElementById("card-description").textContent = "";
-  document.getElementById("card-advice").textContent = "";
-  document.getElementById("card-container").classList.add("hidden");
-
-  // 再次播放背景音樂（若未播放）
+  const name = document.getElementById("card-name");
+  const image = document.getElementById("card-image");
+  const desc = document.getElementById("card-description");
+  const advice = document.getElementById("card-advice");
+  const container = document.getElementById("card-container");
+  const soulMessage = document.getElementById("soul-message");
   const bgMusic = document.getElementById("bg-music");
+
+  if (name) name.textContent = "";
+  if (image) image.src = "";
+  if (desc) desc.textContent = "";
+  if (advice) advice.textContent = "";
+  if (container) container.classList.add("hidden");
+  if (soulMessage) soulMessage.classList.add("hidden");
+
+  // 音樂播放（如果尚未播放）
   if (bgMusic && bgMusic.paused) {
     bgMusic.play().catch(e => {
       console.warn("音樂播放被阻擋:", e);
     });
   }
 
-  // 🔁 自動再抽一張牌
+  // 自動抽牌
   drawCard();
-  document.getElementById("soul-message").classList.remove("hidden");
+
+  // 顯示靈魂訊息區塊
+  if (soulMessage) soulMessage.classList.remove("hidden");
 }
