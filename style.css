@@ -5,14 +5,15 @@ html, body {
   background-image: url('bg.jpg');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;     /* 防止背景重複 */
-  background-attachment: fixed;     /* 固定背景避免滑動時重複出現 */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: white;
   text-align: center;
-  padding: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
 }
 
 .container {
@@ -21,8 +22,9 @@ html, body {
   padding: 20px;
   max-width: 600px;
   width: 90%;
-  text-align: center;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  position: relative;
 }
 
 button {
@@ -31,12 +33,32 @@ button {
   border-radius: 10px;
   border: none;
   cursor: pointer;
+  background-color: #fff;
+  color: #000;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #ddd;
 }
 
 #card-image {
   margin-top: 20px;
   width: 80%;
   max-width: 300px;
+}
+
+video#draw-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(0.4); /* 淡化背景影片 */
+  pointer-events: none;
 }
 
 .hidden {

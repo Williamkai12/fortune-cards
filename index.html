@@ -10,38 +10,47 @@
   <!-- 背景音樂 -->
   <audio id="bg-music" src="music.mp3" autoplay loop></audio>
 
-  <!-- 主畫面 -->
-  <div class="container">
+  <!-- 第一頁：靈魂引導 -->
+  <div id="intro-page" class="container">
+    <p>
+      《夢境旅人的召喚》
+閉上雙眼,深深地吸一口氣......
+想像你正站在一道光與影交織的門前。
+門後,是一個你曾經到訪,卻早已遺忘的世界――
+夢的世界。
+在這場遊戲中,你不再是某人的誰,不再是現實中的角色
+此刻,你是――夢境旅人。
+每張牌,都像是一扇門。
+每個選擇,都是與靈魂的對話。
+請靜心,讓直覺引領你,從夢境牌卡中抽出一張。
+它將成為你今天的入口,也是你靈魂最想給予的提醒。
+夢的召喚已響起,請啟程吧,夢境旅人。
+    </p>
+    <p>
+      🔗 加入我們的 
+      <a href="https://www.instagram.com/tarot_calm?igsh=b3U0MWJsNmcwb3F1" target="_blank">Instagram</a>
+    </p>
+    <button id="start-btn">開始抽牌</button>
+  </div>
+
+  <!-- 第二頁：抽牌主畫面（初始隱藏） -->
+  <div id="draw-page" class="container hidden">
     <h1>🔮 抽一張命運牌 🔮</h1>
+
+    <!-- 背景影片動畫 -->
+    <video id="draw-video" autoplay loop muted playsinline style="width:100%; border-radius: 10px; margin-bottom: 20px;">
+      <source src="bg.mp4" type="video/mp4" />
+      您的瀏覽器不支援影片播放。
+    </video>
+
     <button id="draw-btn">抽牌</button>
 
-    <!-- 抽牌顯示區塊 -->
     <div id="card-container" class="hidden">
       <h2 id="card-name"></h2>
       <img id="card-image" src="" alt="抽到的牌卡"/>
       <p id="card-description"></p>
       <p><strong>指引：</strong> <span id="card-advice"></span></p>
     </div>
-  </div>
-
-  <!-- 顯示靈性引導（預設顯示） -->
-  <div id="soul-message" class="container">
-    <p>
-      如果今天的夢境訊息觸動了你，<br>
-      也許，這就是靈魂在輕聲呼喚你：<br>
-      「我想被聽見、我想更靠近我真正的方向。」<br><br>
-      每一張夢境牌，都是靈魂的一次召喚。<br>
-      如果你想更進一步深入探索內在、釋放壓力，<br>
-      我們提供頌缽音療、靈氣療癒與靈魂探索諮詢──<br><br>
-      由具心理背景的天使靈氣大師，以及臼井靈氣療癒者共同陪伴你，<br>
-      協助你解鎖內在卡點，走回靈魂的道路。<br><br>
-      歡迎認識我們的靈魂療癒空間『禾璞 Hope』。
-    </p>
-    <p>
-      🔗 加入我們的 
-      <a href="https://www.instagram.com/tarot_calm?igsh=b3U0MWJsNmcwb3F1" target="_blank">Instagram</a> 或 
-      <a href="https://lin.ee/Tsm40cG" target="_blank">Line</a> 深入探索你的靈魂旅程。
-    </p>
   </div>
 
   <!-- JavaScript -->

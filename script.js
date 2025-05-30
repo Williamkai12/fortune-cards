@@ -227,7 +227,6 @@ function drawCard() {
   const desc = document.getElementById("card-description");
   const advice = document.getElementById("card-advice");
   const container = document.getElementById("card-container");
-  const soulMessage = document.getElementById("soul-message");
   const bgMusic = document.getElementById("bg-music");
 
   if (name) name.textContent = card.name;
@@ -236,7 +235,7 @@ function drawCard() {
   if (advice) advice.textContent = card.advice;
   if (container) container.classList.remove("hidden");
 
-  // 確保抽牌後背景音樂播放（針對 GitHub Pages / Chrome 限制）
+  // 播放背景音樂（應對瀏覽器限制）
   if (bgMusic && bgMusic.paused) {
     bgMusic.play().catch(e => {
       console.warn("音樂播放被阻擋:", e);
@@ -250,5 +249,14 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("✅ script loaded");
 
   const drawBtn = document.getElementById("draw-btn");
+  const startBtn = document.getElementById("start-btn");
+
   if (drawBtn) drawBtn.addEventListener("click", drawCard);
+
+  if (startBtn) {
+    startBtn.addEventListener("click", () => {
+      document.getElementById("intro-page").classList.add("hidden");
+      document.getElementById("draw-page").classList.remove("hidden");
+    });
+  }
 });
