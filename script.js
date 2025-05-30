@@ -230,3 +230,11 @@ function drawCard() {
 
   drawn = true;
 }
+function resetCard() {
+  drawn = false;
+  document.getElementById("card-name").textContent = "";
+  document.getElementById("card-image").src = "";
+  document.getElementById("card-description").textContent = "";
+  document.getElementById("card-advice").textContent = "";
+  document.getElementById("card-container").classList.add("hidden");
+}
