@@ -238,7 +238,7 @@ function drawCard() {
 
   if (bgMusic && bgMusic.paused) {
     bgMusic.play().catch(e => {
-      console.warn("背景音樂播放被阻擋:", e);
+      console.warn("音樂播放被阻擋:", e);
     });
   }
 
@@ -246,6 +246,7 @@ function drawCard() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("✅ script ready");
   const drawBtn = document.getElementById("draw-btn");
   if (drawBtn) drawBtn.addEventListener("click", drawCard);
 });
