@@ -251,22 +251,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const drawBtn = document.getElementById("draw-btn");
   const startBtn = document.getElementById("start-btn");
 
-  // 開始抽牌頁
   if (startBtn) {
+    console.log("✅ startBtn found");
     startBtn.addEventListener("click", () => {
+      console.log("🎬 開始抽牌 clicked");
       document.getElementById("intro-page").classList.add("hidden");
       document.getElementById("draw-page").classList.remove("hidden");
 
-      // 確保影片從頭播放（若需要）
       const video = document.getElementById("draw-video");
       if (video) {
         video.currentTime = 0;
         video.play().catch(e => console.warn("影片播放被阻擋:", e));
       }
     });
+  } else {
+    console.warn("⛔️ startBtn NOT found");
   }
 
-  // 抽牌行為
   if (drawBtn) {
     drawBtn.addEventListener("click", drawCard);
   }
