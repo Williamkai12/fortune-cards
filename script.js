@@ -221,6 +221,7 @@ function drawCard() {
   }
 
   const card = cards[Math.floor(Math.random() * cards.length)];
+
   const name = document.getElementById("card-name");
   const image = document.getElementById("card-image");
   const desc = document.getElementById("card-description");
@@ -234,8 +235,8 @@ function drawCard() {
   if (desc) desc.textContent = card.desc;
   if (advice) advice.textContent = card.advice;
   if (container) container.classList.remove("hidden");
-  if (soulMessage) soulMessage.classList.remove("hidden");
 
+  // 確保抽牌後背景音樂播放（針對 GitHub Pages / Chrome 限制）
   if (bgMusic && bgMusic.paused) {
     bgMusic.play().catch(e => {
       console.warn("音樂播放被阻擋:", e);
@@ -246,7 +247,8 @@ function drawCard() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ script ready");
+  console.log("✅ script loaded");
+
   const drawBtn = document.getElementById("draw-btn");
   if (drawBtn) drawBtn.addEventListener("click", drawCard);
 });
