@@ -12,10 +12,10 @@ const cards = [
     advice: '你正進入一段穩定且可能具滋養性的階段,但不要忽忽視那些潛藏在表面之下的感受。清理過往的能量,讓這份安穩更深刻地屬於你。'
   },
   {
-    name: '沉思者',
+    name: '內在警報',
     img: 'images/card3.png',
-    desc: '內在警報',
-    advice: '我信任我的直覺,當內在的火光閃爍,我選擇行動與覺醒。'
+    desc: '我信任我的直覺,當內在的火光閃爍,我選擇行動與覺醒。',
+    advice: '你有強烈的靈性感知力,能夠提早察覺即將到來的情緒或能量變化。不要懷疑你的直覺,只是有時還在學習如何對應與行動。內在聲音提醒你一一你不需要完美,只需要開始。'
   },
   {
     name: '我找不到自己的名字',
@@ -214,27 +214,24 @@ const cards = [
 
 let drawn = false;
 
-function drawCard() {
-  // 觸發音樂播放（只有使用者互動後瀏覽器才允許播放）
-  const bgMusic = document.getElementById('bg-music');
+function resetCard() {
+  drawn = false;
+
+  // 清空牌卡內容
+  document.getElementById("card-name").textContent = "";
+  document.getElementById("card-image").src = "";
+  document.getElementById("card-description").textContent = "";
+  document.getElementById("card-advice").textContent = "";
+  document.getElementById("card-container").classList.add("hidden");
+
+  // 再次播放背景音樂（若未播放）
+  const bgMusic = document.getElementById("bg-music");
   if (bgMusic && bgMusic.paused) {
     bgMusic.play().catch(e => {
-      console.warn('音樂播放被瀏覽器阻擋:', e);
+      console.warn("音樂播放被阻擋:", e);
     });
   }
 
-  if (drawn) {
-    alert('你只能抽一次牌！');
-    return;
-  }
-
-  const card = cards[Math.floor(Math.random() * cards.length)];
-
-  document.getElementById('card-name').textContent = card.name;
-  document.getElementById('card-image').src = card.img;
-  document.getElementById('card-description').textContent = card.desc;
-  document.getElementById('card-advice').textContent = card.advice;
-  document.getElementById('card-container').classList.remove('hidden');
-
-  drawn = true;
+  // 🔁 自動再抽一張牌
+  drawCard();
 }
