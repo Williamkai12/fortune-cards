@@ -23,7 +23,7 @@ html, body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   z-index: 2;
   position: relative;
-  margin: 2rem auto;     /* ✅ 垂直置中 + 可滾動 */
+  margin: 2rem auto;
 }
 
 button {
@@ -49,17 +49,28 @@ button:hover {
 }
 
 video#draw-video {
-  position: fixed; /* ✅ 改為固定全螢幕 */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   object-fit: cover;
   z-index: 0;
-  filter: brightness(1.0); /* ✅ 改亮度為正常 */
+  filter: brightness(1.0);
   pointer-events: none;
 }
 
 .hidden {
   display: none;
+}
+
+/* ✅ 讓所有連結變成金色 */
+a {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }
