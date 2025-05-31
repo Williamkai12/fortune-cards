@@ -50,15 +50,16 @@ button:hover {
 }
 
 video#draw-video {
-  position: absolute;
+  position: fixed; /* ✅ 從 absolute 改成 fixed */
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   object-fit: cover;
   z-index: 0;
-  filter: brightness(0.4);
+  filter: brightness(0.4); /* 淡化影片亮度 */
   pointer-events: none;
+
 }
 
 .hidden {
