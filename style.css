@@ -57,7 +57,7 @@ video#draw-video {
   height: 100vh;
   object-fit: cover;
   z-index: 0;
-  filter: brightness(0.4); /* 淡化背景影片 */
+  filter: brightness(0.4);
   pointer-events: none;
 }
 
