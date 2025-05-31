@@ -1,54 +1,56 @@
-// ✅ 使用全域變數方式
-const cards = window.cards;
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("✅ script.js 載入成功");
 
-console.log("✅ script.js 正常載入，卡片總數：", cards.length);
+  const cards = window.cards;
+  let drawn = false;
 
-let drawn = false;
+  const pages = {
+    p1: document.getElementById("page-1"),
+    p2: document.getElementById("page-2"),
+    p3: document.getElementById("page-3"),
+    p4: document.getElementById("page-4")
+  };
 
-const pages = {
-  p1: document.getElementById("page-1"),
-  p2: document.getElementById("page-2"),
-  p3: document.getElementById("page-3"),
-  p4: document.getElementById("page-4")
-};
+  const bgMusic = document.getElementById("bg-music");
+  const video = document.getElementById("draw-video");
 
-const bgMusic = document.getElementById("bg-music");
-const video = document.getElementById("draw-video");
+  document.getElementById("start-journey-btn").addEventListener("click", () => {
+    pages.p1.classList.add("hidden");
+    pages.p2.classList.remove("hidden");
 
-document.getElementById("start-journey-btn").addEventListener("click", () => {
-  pages.p1.classList.add("hidden");
-  pages.p2.classList.remove("hidden");
-  bgMusic.play().catch(err => {
-    console.warn("音樂播放被阻擋：", err);
-  });
-});
-
-document.getElementById("go-draw-btn").addEventListener("click", () => {
-  if (drawn) {
-    alert("你只能抽一次牌！");
-    return;
-  }
-
-  pages.p2.classList.add("hidden");
-  pages.p3.classList.remove("hidden");
-
-  video.classList.remove("hidden");
-  video.currentTime = 0;
-  video.play().catch(err => {
-    console.warn("影片播放錯誤：", err);
+    bgMusic.play().then(() => {
+      console.log("✅ 音樂播放成功");
+    }).catch(err => {
+      console.warn("⚠️ 音樂播放被瀏覽器攔截", err);
+    });
   });
 
-  setTimeout(() => {
-    pages.p3.classList.add("hidden");
-    pages.p4.classList.remove("hidden");
+  document.getElementById("go-draw-btn").addEventListener("click", () => {
+    if (drawn) {
+      alert("你只能抽一次牌！");
+      return;
+    }
 
-    const card = cards[Math.floor(Math.random() * cards.length)];
+    pages.p2.classList.add("hidden");
+    pages.p3.classList.remove("hidden");
 
-    document.getElementById("card-name").textContent = card.name;
-    document.getElementById("card-image").src = card.img;
-    document.getElementById("card-description").textContent = card.desc;
-    document.getElementById("card-advice").textContent = card.advice;
+    video.classList.remove("hidden");
+    video.currentTime = 0;
+    video.play().catch(err => {
+      console.warn("⚠️ 影片播放錯誤：", err);
+    });
 
-    drawn = true;
-  }, 5000);
+    setTimeout(() => {
+      pages.p3.classList.add("hidden");
+      pages.p4.classList.remove("hidden");
+
+      const card = cards[Math.floor(Math.random() * cards.length)];
+      document.getElementById("card-name").textContent = card.name;
+      document.getElementById("card-image").src = card.img;
+      document.getElementById("card-description").textContent = card.desc;
+      document.getElementById("card-advice").textContent = card.advice;
+
+      drawn = true;
+    }, 5000);
+  });
 });
