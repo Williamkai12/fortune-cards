@@ -1,6 +1,6 @@
 html, body {
-  height: 100%;
   margin: 0;
+  padding: 2rem;
   font-family: 'Noto Sans TC', sans-serif;
   background-image: url('bg.jpg');
   background-size: cover;
@@ -9,11 +9,9 @@ html, body {
   background-attachment: fixed;
   color: white;
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  overflow: hidden;
+  overflow-x: hidden;    /* ✅ 水平不滾動 */
+  overflow-y: auto;      /* ✅ 垂直可滾動 */
+  min-height: 100vh;     /* ✅ 確保高度至少滿版 */
 }
 
 .container {
@@ -25,6 +23,7 @@ html, body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   z-index: 2;
   position: relative;
+  margin: 2rem auto;     /* ✅ 垂直置中 + 可滾動 */
 }
 
 button {
@@ -50,16 +49,15 @@ button:hover {
 }
 
 video#draw-video {
-  position: fixed; /* ✅ 從 absolute 改成 fixed */
+  position: fixed; /* ✅ 改為固定全螢幕 */
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   object-fit: cover;
   z-index: 0;
-  filter: brightness(1.0); /* 淡化影片亮度 */
+  filter: brightness(1.0); /* ✅ 改亮度為正常 */
   pointer-events: none;
-
 }
 
 .hidden {
