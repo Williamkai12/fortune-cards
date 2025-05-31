@@ -1,11 +1,10 @@
-// ✅ 引入卡片資料
-import { cards } from './cards.js';
+// ✅ 使用全域變數方式
+const cards = window.cards;
 
 console.log("✅ script.js 正常載入，卡片總數：", cards.length);
 
 let drawn = false;
 
-// ✅ 頁面元素
 const pages = {
   p1: document.getElementById("page-1"),
   p2: document.getElementById("page-2"),
@@ -16,18 +15,14 @@ const pages = {
 const bgMusic = document.getElementById("bg-music");
 const video = document.getElementById("draw-video");
 
-// ▶️ 點「啟程」：切換至第2頁並播放音樂
 document.getElementById("start-journey-btn").addEventListener("click", () => {
   pages.p1.classList.add("hidden");
   pages.p2.classList.remove("hidden");
-
-  // ✅ 播放音樂（處理瀏覽器限制）
   bgMusic.play().catch(err => {
     console.warn("音樂播放被阻擋：", err);
   });
 });
 
-// ▶️ 點「開始抽牌」：播放動畫 → 顯示牌卡
 document.getElementById("go-draw-btn").addEventListener("click", () => {
   if (drawn) {
     alert("你只能抽一次牌！");

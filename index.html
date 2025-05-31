@@ -10,7 +10,7 @@
   <!-- 背景音樂 -->
   <audio id="bg-music" src="music.mp3" loop></audio>
 
-  <!-- 第一頁：靈魂導引 -->
+  <!-- 第一頁 -->
   <div id="page-1" class="container">
     <p>
       《夢境旅人的召喚》<br><br>
@@ -25,14 +25,14 @@
     <button id="start-journey-btn">啟程</button>
   </div>
 
-  <!-- 第二頁：靜心抽牌 -->
+  <!-- 第二頁 -->
   <div id="page-2" class="container hidden">
     <h1>🔮 靜心抽牌 🔮</h1>
     <p>閉上眼睛，靜心三秒。<br>當你準備好，點擊下方按鈕開始抽牌儀式。</p>
     <button id="go-draw-btn">開始抽牌</button>
   </div>
 
-  <!-- 第三頁：抽牌動畫 -->
+  <!-- 第三頁 -->
   <div id="page-3" class="container hidden">
     <video id="draw-video" muted playsinline class="hidden">
       <source src="bg.mp4" type="video/mp4" />
@@ -40,14 +40,13 @@
     </video>
   </div>
 
-  <!-- 第四頁：結果顯示 -->
+  <!-- 第四頁 -->
   <div id="page-4" class="container hidden">
     <h2 id="card-name"></h2>
     <img id="card-image" src="" alt="抽到的牌卡" style="max-width: 100%; margin-top: 1rem;" />
     <p id="card-description"></p>
     <p><strong>指引：</strong> <span id="card-advice"></span></p>
 
-    <!-- 靈魂療癒說明文字 -->
     <div style="margin-top: 2rem; text-align: left;">
       <p>
         如果今天的夢境訊息觸動了你，<br>
@@ -66,7 +65,6 @@
         </a>。
       </p>
 
-      <!-- ✅ 圖片與描述 -->
       <div style="margin-top: 2rem; text-align: center;">
         <img src="images/healing-space.jpg" alt="靈魂療癒空間" style="max-width: 100%; border-radius: 10px;" />
         <p style="margin-top: 1rem;">
@@ -74,10 +72,11 @@
           安靜、溫暖、專屬你與自己心靈對話的角落。
         </p>
       </div>
-    </div> <!-- ✅ 補上這個結尾 -->
-  </div> <!-- ✅ 第四頁 container 結尾 -->
-  
-  <!-- JavaScript -->
-  <script type="module" src="script.js"></script>
+    </div>
+  </div>
+
+  <!-- 先載入卡片資料，再載入主程式 -->
+  <script src="window.cards.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-export const cards = [
+window.cards = [
   {
     name: '穿越的召喚',
     img: 'images/card1.png',
