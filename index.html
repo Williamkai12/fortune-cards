@@ -10,54 +10,45 @@
   <!-- 背景音樂 -->
   <audio id="bg-music" src="music.mp3" autoplay loop></audio>
 
-  <!-- 包裹整體頁面 -->
-  <div id="app-wrapper">
+  <!-- 第一頁：靈魂導引 -->
+  <div id="page-1" class="container">
+    <p>
+      《夢境旅人的召喚》<br><br>
+      閉上雙眼，深深地吸一口氣......<br>
+      想像你正站在一道光與影交織的門前。<br>
+      門後，是一個你曾經到訪，卻早已遺忘的世界——夢的世界。<br>
+      在這場遊戲中，你不再是現實中的角色。此刻，你是夢境旅人。<br><br>
+      每張牌，都是與靈魂的對話。請靜心，讓直覺引領你。<br>
+      夢的召喚已響起，請啟程吧，夢境旅人。
+    </p>
+    <p>🔗 <a href="https://www.instagram.com/tarot_calm?igsh=b3U0MWJsNmcwb3F1" target="_blank">加入我們的 Instagram</a></p>
+    <button id="start-journey-btn">啟程</button>
+  </div>
 
-    <!-- 第一頁：靈魂引導 -->
-    <div id="intro-page" class="container">
-      <p>
-        《夢境旅人的召喚》
-        閉上雙眼,深深地吸一口氣......
-        想像你正站在一道光與影交織的門前。
-        門後,是一個你曾經到訪,卻早已遺忘的世界――夢的世界。
-        在這場遊戲中,你不再是某人的誰,不再是現實中的角色。
-        此刻,你是――夢境旅人。
-        每張牌,都像是一扇門。
-        每個選擇,都是與靈魂的對話。
-        請靜心,讓直覺引領你,從夢境牌卡中抽出一張。
-        它將成為你今天的入口,也是你靈魂最想給予的提醒。
-        夢的召喚已響起,請啟程吧,夢境旅人。
-      </p>
-      <p>
-        🔗 加入我們的 
-        <a href="https://www.instagram.com/tarot_calm?igsh=b3U0MWJsNmcwb3F1" target="_blank">Instagram</a>
-      </p>
-      <button id="start-btn">開始抽牌</button>
-    </div>
+  <!-- 第二頁：靜心抽牌 -->
+  <div id="page-2" class="container hidden">
+    <h1>🔮 靜心抽牌 🔮</h1>
+    <p>閉上眼睛，靜心三秒。<br>當你準備好，點擊下方按鈕開始抽牌儀式。</p>
+    <button id="go-draw-btn">開始抽牌</button>
+  </div>
 
-    <!-- 第二頁：抽牌主畫面（初始隱藏） -->
-    <div id="draw-page" class="container hidden">
-      <h1>🔮 抽一張命運牌 🔮</h1>
+  <!-- 第三頁：抽牌動畫 -->
+  <div id="page-3" class="container hidden">
+    <video id="draw-video" autoplay muted playsinline>
+      <source src="bg.mp4" type="video/mp4" />
+      您的瀏覽器不支援影片播放。
+    </video>
+  </div>
 
-      <!-- 背景影片動畫 -->
-      <video id="draw-video" autoplay loop muted playsinline class="background-video">
-        <source src="bg.mp4" type="video/mp4" />
-        您的瀏覽器不支援影片播放。
-      </video>
-
-      <button id="draw-btn">抽牌</button>
-
-      <div id="card-container" class="hidden">
-        <h2 id="card-name"></h2>
-        <img id="card-image" src="" alt="抽到的牌卡"/>
-        <p id="card-description"></p>
-        <p><strong>指引：</strong> <span id="card-advice"></span></p>
-      </div>
-    </div>
-
+  <!-- 第四頁：結果顯示 -->
+  <div id="page-4" class="container hidden">
+    <h2 id="card-name"></h2>
+    <img id="card-image" src="" alt="抽到的牌卡" style="max-width: 100%; margin-top: 1rem;" />
+    <p id="card-description"></p>
+    <p><strong>指引：</strong> <span id="card-advice"></span></p>
   </div>
 
   <!-- JavaScript -->
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
