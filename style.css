@@ -16,7 +16,7 @@ html, body {
 
 /* ✅ 抽牌後切換背景圖片 */
 .body-bg-alt {
-  background-image: url('images/bg2.png') !important;
+  background-image: url('/bg2.png') !important;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
