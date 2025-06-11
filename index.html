@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>直覺指引牌卡</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20250611" />
 </head>
 <body>
   <!-- 背景音樂 -->
@@ -47,6 +47,7 @@
     <p id="card-description"></p>
     <p><strong>指引：</strong> <span id="card-advice"></span></p>
     <p><strong>提問：</strong> <span id="card-question" style="color:#ffe08a;"></span></p>
+
     <!-- 療癒說明區塊 -->
     <div style="margin-top: 2rem; text-align: left;">
       <p>
@@ -67,20 +68,78 @@
       </p>
 
       <div style="margin-top: 2rem; text-align: center;">
-        <!-- Hope 標誌圖 -->
         <img src="images/hope-logo.jpeg" alt="禾璞 Hope 標誌" style="max-width: 160px; margin-bottom: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" />
       </div>
     </div>
 
-    <!-- 作者介紹區塊 -->
     <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #888; text-align: center;">
       <img src="images/author-yuyu.jpeg" alt="牌卡創作者 Yuyu" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.4); margin-bottom: 0.5rem;" />
       <p style="font-style: italic; font-size: 0.9rem;">牌卡創作者 Yuyu</p>
     </div>
   </div>
 
-  <!-- JavaScript 檔案 -->
-  <script src="window.cards.js"></script>
-  <script src="script.js"></script>
+  <!-- JS 加入防快取參數 -->
+  <script src="window.cards.js?v=20250611"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("✅ script.js 載入成功");
+
+      const cards = window.cards;
+      let drawn = false;
+
+      const pages = {
+        p1: document.getElementById("page-1"),
+        p2: document.getElementById("page-2"),
+        p3: document.getElementById("page-3"),
+        p4: document.getElementById("page-4")
+      };
+
+      const bgMusic = document.getElementById("bg-music");
+      const video = document.getElementById("draw-video");
+
+      document.getElementById("start-journey-btn").addEventListener("click", () => {
+        pages.p1.classList.add("hidden");
+        pages.p2.classList.remove("hidden");
+
+        bgMusic.play().then(() => {
+          console.log("✅ 音樂播放成功");
+        }).catch(err => {
+          console.warn("⚠️ 音樂播放被瀏覽器攔截", err);
+        });
+      });
+
+      document.getElementById("go-draw-btn").addEventListener("click", () => {
+        if (drawn) {
+          alert("你只能抽一次牌！");
+          return;
+        }
+
+        pages.p2.classList.add("hidden");
+        pages.p3.classList.remove("hidden");
+
+        video.classList.remove("hidden");
+        video.currentTime = 0;
+        video.play().catch(err => {
+          console.warn("⚠️ 影片播放錯誤：", err);
+        });
+
+        setTimeout(() => {
+          pages.p3.classList.add("hidden");
+          pages.p4.classList.remove("hidden");
+
+          const card = cards[Math.floor(Math.random() * cards.length)];
+          console.log("🎴 抽到牌卡：", card);
+
+          document.getElementById("card-name").textContent = card.name;
+          document.getElementById("card-image").src = card.img;
+          document.getElementById("card-description").textContent = card.desc;
+          document.getElementById("card-advice").textContent = card.advice;
+          document.getElementById("card-question").textContent = card.question || '（此牌沒有提問內容）';
+
+          drawn = true;
+        }, 5000);
+      });
+    });
+  </script>
 </body>
 </html>
