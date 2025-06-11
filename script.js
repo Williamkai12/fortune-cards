@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("card-image").src = card.img;
       document.getElementById("card-description").textContent = card.desc;
       document.getElementById("card-advice").textContent = card.advice;
+      document.getElementById("card-question").textContent = card.question || '';
 
       drawn = true;
     }, 5000);
