@@ -53,12 +53,12 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("card-advice").textContent = card.advice;
       document.getElementById("card-question").textContent = card.question || '（此牌沒有提問內容）';
 
-      // ✅ 切換背景圖
-      document.body.classList.add("body-bg-alt");
+      // ✅ 切換背景圖片為根目錄的 bg2.png（含淡入）
+      document.body.style.transition = "background-image 1s ease";
+      document.body.style.backgroundImage = "url('bg2.png')";
 
-      // ✅ 讓 page-4 變透明（正確針對 .container 操作）
-      pages.p4.classList.remove("container"); // 先移除原本的不透明背景
-      pages.p4.classList.add("transparent-bg", "container"); // 重新加上透明版本的 container
+      // ✅ 第四頁容器透明化（直接操作 style）
+      pages.p4.style.backgroundColor = "transparent";
 
       drawn = true;
     }, 5000);
