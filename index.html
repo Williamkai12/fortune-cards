@@ -63,7 +63,7 @@
         document.getElementById("card-advice").textContent = card.advice;
         document.getElementById("card-question").textContent = card.question || '（此牌沒有提問內容）';
 
-        // ✅ 100% 覆蓋原背景圖片
+        // ✅ 100% 覆蓋原背景圖片並加上過渡效果
         Object.assign(document.body.style, {
           backgroundImage: "url('bg2.png')",
           backgroundSize: "cover",
@@ -73,7 +73,7 @@
           transition: "background-image 1s ease"
         });
 
-        // ✅ 讓 page-4 背景透明
+        // ✅ 將第四頁背景設為透明
         pages.p4.style.backgroundColor = "transparent";
 
         drawn = true;
