@@ -53,9 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("card-advice").textContent = card.advice;
       document.getElementById("card-question").textContent = card.question || '（此牌沒有提問內容）';
 
-      // ✅ 切換背景圖 + 讓第 4 頁背景透明
+      // ✅ 切換背景圖 + 讓第 4 頁的 container 透明
       document.body.classList.add("body-bg-alt");
-      pages.p4.classList.add("transparent-bg");
+      pages.p4.classList.add("transparent-bg"); // page-4 同時是 container
 
       drawn = true;
     }, 5000);

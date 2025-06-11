@@ -23,8 +23,8 @@ html, body {
   background-attachment: fixed;
 }
 
-/* ✅ 第四頁透明化，讓背景圖顯示出來 */
-#page-4.transparent-bg {
+/* ✅ 第四頁容器透明化，讓背景圖顯示出來 */
+.transparent-bg {
   background-color: transparent !important;
 }
 
