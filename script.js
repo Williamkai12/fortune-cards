@@ -53,11 +53,17 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("card-advice").textContent = card.advice;
       document.getElementById("card-question").textContent = card.question || '（此牌沒有提問內容）';
 
-      // ✅ 切換背景圖片為根目錄的 bg2.png（含淡入）
-      document.body.style.transition = "background-image 1s ease";
-      document.body.style.backgroundImage = "url('bg2.png')";
+      // ✅ 完整覆蓋背景圖片與樣式，100% 蓋掉原本 background 設定
+      Object.assign(document.body.style, {
+        backgroundImage: "url('bg2.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "scroll", // 不固定，才能蓋掉 fixed
+        transition: "background-image 1s ease"
+      });
 
-      // ✅ 第四頁容器透明化（直接操作 style）
+      // ✅ 第四頁容器透明化
       pages.p4.style.backgroundColor = "transparent";
 
       drawn = true;
