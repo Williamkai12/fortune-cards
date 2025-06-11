@@ -24,7 +24,7 @@ html, body {
 }
 
 /* ✅ 第四頁容器透明化，讓背景圖顯示出來 */
-.transparent-bg {
+.transparent-bg.container {
   background-color: transparent !important;
 }
 
