@@ -13,8 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const bgMusic = document.getElementById("bg-music");
   const video = document.getElementById("draw-video");
+  const startBtn = document.getElementById("start-journey-btn");
+  const drawBtn = document.getElementById("go-draw-btn");
 
-  document.getElementById("start-journey-btn").addEventListener("click", () => {
+  if (!startBtn || !drawBtn || !pages.p1 || !pages.p4) {
+    console.error("❌ 無法找到必要元素，請檢查 HTML 結構是否正確！");
+    return;
+  }
+
+  startBtn.addEventListener("click", () => {
     pages.p1.classList.add("hidden");
     pages.p2.classList.remove("hidden");
 
@@ -25,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  document.getElementById("go-draw-btn").addEventListener("click", () => {
+  drawBtn.addEventListener("click", () => {
     if (drawn) {
       alert("你只能抽一次牌！");
       return;
@@ -53,17 +60,17 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("card-advice").textContent = card.advice;
       document.getElementById("card-question").textContent = card.question || '（此牌沒有提問內容）';
 
-      // ✅ 完整覆蓋背景圖片與樣式，100% 蓋掉原本 background 設定
+      // ✅ 完整覆蓋背景樣式
       Object.assign(document.body.style, {
         backgroundImage: "url('bg2.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundAttachment: "scroll", // 不固定，才能蓋掉 fixed
+        backgroundAttachment: "scroll",
         transition: "background-image 1s ease"
       });
 
-      // ✅ 第四頁容器透明化
+      // ✅ 容器透明
       pages.p4.style.backgroundColor = "transparent";
 
       drawn = true;
