@@ -1,150 +1,68 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>直覺指引牌卡</title>
-  <link rel="stylesheet" href="style.css?v=20250611" />
-</head>
-<body>
-  <!-- 背景音樂 -->
-  <audio id="bg-music" src="music.mp3" loop></audio>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("✅ script.js 載入成功");
 
-  <!-- 第一頁 -->
-  <div id="page-1" class="container">
-    <p>
-      《夢境旅人的召喚》<br><br>
-      閉上雙眼，深深地吸一口氣......<br>
-      想像你正站在一道光與影交織的門前。<br>
-      門後，是一個你曾經到訪，卻早已遺忘的世界——夢的世界。<br>
-      在這場遊戲中，你不再是現實中的角色。此刻，你是夢境旅人。<br><br>
-      每張牌，都是與靈魂的對話。請靜心，讓直覺引領你。<br>
-      夢的召喚已響起，請啟程吧，夢境旅人。
-    </p>
-    <p>🔗 <a href="https://www.instagram.com/tarot_calm?igsh=b3U0MWJsNmcwb3F1" target="_blank">加入我們的 Instagram</a></p>
-    <button id="start-journey-btn">啟程</button>
-  </div>
+    const cards = window.cards;
+    let drawn = false;
 
-  <!-- 第二頁 -->
-  <div id="page-2" class="container hidden">
-    <h1>🔮 靜心抽牌 🔮</h1>
-    <p>閉上眼睛，靜心三秒。<br>當你準備好，點擊下方按鈕開始抽牌儀式。</p>
-    <button id="go-draw-btn">開始抽牌</button>
-  </div>
+    const pages = {
+      p1: document.getElementById("page-1"),
+      p2: document.getElementById("page-2"),
+      p3: document.getElementById("page-3"),
+      p4: document.getElementById("page-4")
+    };
 
-  <!-- 第三頁 -->
-  <div id="page-3" class="container hidden">
-    <video id="draw-video" muted playsinline class="hidden">
-      <source src="bg.mp4" type="video/mp4" />
-      您的瀏覽器不支援影片播放。
-    </video>
-  </div>
+    const bgMusic = document.getElementById("bg-music");
+    const video = document.getElementById("draw-video");
 
-  <!-- 第四頁 -->
-  <div id="page-4" class="container hidden">
-    <h2 id="card-name"></h2>
-    <img id="card-image" src="" alt="抽到的牌卡" style="max-width: 100%; margin-top: 1rem;" />
-    <p id="card-description"></p>
-    <p><strong>指引：</strong> <span id="card-advice"></span></p>
+    document.getElementById("start-journey-btn").addEventListener("click", () => {
+      pages.p1.classList.add("hidden");
+      pages.p2.classList.remove("hidden");
 
-    <!-- 提問段落：置中、下移、強調 -->
-    <div style="margin-top: 2rem; text-align: center;">
-      <p><strong>提問：</strong></p>
-      <p id="card-question" style="color:#ffe08a; font-weight: bold; font-size: 1.1rem; line-height: 1.6; max-width: 90%; margin: 0 auto;"></p>
-    </div>
-
-    <!-- 療癒說明區塊 -->
-    <div style="margin-top: 2rem; text-align: left;">
-      <p>
-        如果今天的夢境訊息觸動了你，<br>
-        也許，這就是靈魂在輕聲呼喚你：<br>
-        「我想被聽見、我想更靠近我真正的方向。」<br><br>
-
-        每一張夢境牌，都是靈魂的一次召喚。<br>
-        如果你想更進一步深入探索內在、釋放壓力，<br>
-        我們提供頌缽音療、靈氣療癒與靈魂探索諮詢──<br>
-        由具心理背景的天使靈氣大師，以及臼井靈氣療癒者共同陪伴你，<br>
-        協助你解鎖內在卡點，走回靈魂的道路。<br><br>
-
-        歡迎認識我們的靈魂療癒空間 
-        <a href="https://www.notion.so/1d3ca6c9d5d980889759e16839f58d35?source=copy_link" target="_blank">
-          『禾璞 Hope』
-        </a>。
-      </p>
-
-      <div style="margin-top: 2rem; text-align: center;">
-        <img src="images/hope-logo.jpeg" alt="禾璞 Hope 標誌" style="max-width: 160px; margin-bottom: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" />
-      </div>
-    </div>
-
-    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #888; text-align: center;">
-      <img src="images/author-yuyu.jpeg" alt="牌卡創作者 Yuyu" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.4); margin-bottom: 0.5rem;" />
-      <p style="font-style: italic; font-size: 0.9rem;">牌卡創作者 Yuyu</p>
-    </div>
-  </div>
-
-  <!-- JS 加入防快取參數 -->
-  <script src="window.cards.js?v=20250611"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      console.log("✅ script.js 載入成功");
-
-      const cards = window.cards;
-      let drawn = false;
-
-      const pages = {
-        p1: document.getElementById("page-1"),
-        p2: document.getElementById("page-2"),
-        p3: document.getElementById("page-3"),
-        p4: document.getElementById("page-4")
-      };
-
-      const bgMusic = document.getElementById("bg-music");
-      const video = document.getElementById("draw-video");
-
-      document.getElementById("start-journey-btn").addEventListener("click", () => {
-        pages.p1.classList.add("hidden");
-        pages.p2.classList.remove("hidden");
-
-        bgMusic.play().then(() => {
-          console.log("✅ 音樂播放成功");
-        }).catch(err => {
-          console.warn("⚠️ 音樂播放被瀏覽器攔截", err);
-        });
-      });
-
-      document.getElementById("go-draw-btn").addEventListener("click", () => {
-        if (drawn) {
-          alert("你只能抽一次牌！");
-          return;
-        }
-
-        pages.p2.classList.add("hidden");
-        pages.p3.classList.remove("hidden");
-
-        video.classList.remove("hidden");
-        video.currentTime = 0;
-        video.play().catch(err => {
-          console.warn("⚠️ 影片播放錯誤：", err);
-        });
-
-        setTimeout(() => {
-          pages.p3.classList.add("hidden");
-          pages.p4.classList.remove("hidden");
-
-          const card = cards[Math.floor(Math.random() * cards.length)];
-          console.log("🎴 抽到牌卡：", card);
-
-          document.getElementById("card-name").textContent = card.name;
-          document.getElementById("card-image").src = card.img;
-          document.getElementById("card-description").textContent = card.desc;
-          document.getElementById("card-advice").textContent = card.advice;
-          document.getElementById("card-question").textContent = card.question || '（此牌沒有提問內容）';
-
-          drawn = true;
-        }, 5000);
+      bgMusic.play().then(() => {
+        console.log("✅ 音樂播放成功");
+      }).catch(err => {
+        console.warn("⚠️ 音樂播放被瀏覽器攔截", err);
       });
     });
-  </script>
-</body>
-</html>
+
+    document.getElementById("go-draw-btn").addEventListener("click", () => {
+      if (drawn) {
+        alert("你只能抽一次牌！");
+        return;
+      }
+
+      pages.p2.classList.add("hidden");
+      pages.p3.classList.remove("hidden");
+
+      video.classList.remove("hidden");
+      video.currentTime = 0;
+      video.play().catch(err => {
+        console.warn("⚠️ 影片播放錯誤：", err);
+      });
+
+      setTimeout(() => {
+        pages.p3.classList.add("hidden");
+        pages.p4.classList.remove("hidden");
+
+        const card = cards[Math.floor(Math.random() * cards.length)];
+        console.log("🎴 抽到牌卡：", card);
+
+        document.getElementById("card-name").textContent = card.name;
+        document.getElementById("card-image").src = card.img;
+        document.getElementById("card-description").textContent = card.desc;
+        document.getElementById("card-advice").textContent = card.advice;
+        document.getElementById("card-question").textContent = card.question || '（此牌沒有提問內容）';
+
+        // ✅ 新增：切換背景圖為根目錄的 bg2.png，並加上過渡效果
+        document.body.style.transition = "background-image 1s ease";
+        document.body.style.backgroundImage = "url('bg2.png')";
+
+        // ✅ 選擇性：讓第四頁容器透明，讓新背景更明顯
+        pages.p4.style.backgroundColor = "transparent";
+
+        drawn = true;
+      }, 5000);
+    });
+  });
+</script>
