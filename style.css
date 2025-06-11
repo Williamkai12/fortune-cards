@@ -9,9 +9,9 @@ html, body {
   background-attachment: fixed;
   color: white;
   text-align: center;
-  overflow-x: hidden;    /* ✅ 水平不滾動 */
-  overflow-y: auto;      /* ✅ 垂直可滾動 */
-  min-height: 100vh;     /* ✅ 確保高度至少滿版 */
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100vh;
 }
 
 /* ✅ 抽牌後切換背景圖片 */
@@ -21,6 +21,11 @@ html, body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+/* ✅ 第四頁透明化，讓背景圖顯示出來 */
+#page-4.transparent-bg {
+  background-color: transparent !important;
 }
 
 .container {
@@ -33,6 +38,7 @@ html, body {
   z-index: 2;
   position: relative;
   margin: 2rem auto;
+  transition: background-color 0.4s ease;
 }
 
 button {

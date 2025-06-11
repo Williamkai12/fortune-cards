@@ -45,14 +45,17 @@ document.addEventListener("DOMContentLoaded", () => {
       pages.p4.classList.remove("hidden");
 
       const card = cards[Math.floor(Math.random() * cards.length)];
+      console.log("🎴 抽到牌卡：", card);
+
       document.getElementById("card-name").textContent = card.name;
       document.getElementById("card-image").src = card.img;
       document.getElementById("card-description").textContent = card.desc;
       document.getElementById("card-advice").textContent = card.advice;
-      document.getElementById("card-question").textContent = card.question || '';
+      document.getElementById("card-question").textContent = card.question || '（此牌沒有提問內容）';
 
-      // ✅ 抽完牌後切換背景圖片（改為加 class）
+      // ✅ 切換背景圖 + 讓第 4 頁背景透明
       document.body.classList.add("body-bg-alt");
+      pages.p4.classList.add("transparent-bg");
 
       drawn = true;
     }, 5000);
