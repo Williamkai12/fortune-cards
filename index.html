@@ -18,12 +18,13 @@
     const startBtn = document.getElementById("start-journey-btn");
     const drawBtn = document.getElementById("go-draw-btn");
 
-    // ✅ 加入防錯機制，避免 null 錯誤
+    // ✅ 檢查 DOM 是否正確載入，避免空白錯誤
     if (!startBtn || !drawBtn || !pages.p1 || !pages.p2 || !pages.p3 || !pages.p4) {
       console.error("❌ 找不到必要的元素，請確認 HTML 結構正確");
       return;
     }
 
+    // ✅ 開始旅程
     startBtn.addEventListener("click", () => {
       pages.p1.classList.add("hidden");
       pages.p2.classList.remove("hidden");
@@ -35,6 +36,7 @@
       });
     });
 
+    // ✅ 抽牌按鈕邏輯
     drawBtn.addEventListener("click", () => {
       if (drawn) {
         alert("你只能抽一次牌！");
@@ -50,6 +52,7 @@
         console.warn("⚠️ 影片播放錯誤：", err);
       });
 
+      // ✅ 抽牌後進入第四頁
       setTimeout(() => {
         pages.p3.classList.add("hidden");
         pages.p4.classList.remove("hidden");
@@ -63,7 +66,7 @@
         document.getElementById("card-advice").textContent = card.advice;
         document.getElementById("card-question").textContent = card.question || '（此牌沒有提問內容）';
 
-        // ✅ 100% 覆蓋原背景圖片並加上過渡效果
+        // ✅ 強制覆蓋背景圖片樣式（100% 蓋掉原設計）
         Object.assign(document.body.style, {
           backgroundImage: "url('bg2.png')",
           backgroundSize: "cover",
@@ -73,7 +76,7 @@
           transition: "background-image 1s ease"
         });
 
-        // ✅ 將第四頁背景設為透明
+        // ✅ 移除第四頁容器的黑色遮罩（透明化）
         pages.p4.style.backgroundColor = "transparent";
 
         drawn = true;
