@@ -12,20 +12,7 @@ html, body {
   overflow-x: hidden;
   overflow-y: auto;
   min-height: 100vh;
-}
-
-/* ✅ 抽牌後切換背景圖片 */
-.body-bg-alt {
-  background-image: url('/bg2.png') !important;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-/* ✅ 第四頁容器透明化，讓背景圖顯示出來 */
-.transparent-bg.container {
-  background-color: transparent !important;
+  transition: background-image 1s ease; /* ✅ 加這行讓背景平滑切換 */
 }
 
 .container {
