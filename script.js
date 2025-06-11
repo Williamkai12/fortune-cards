@@ -51,10 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("card-advice").textContent = card.advice;
       document.getElementById("card-question").textContent = card.question || '';
 
-      // ✅ 抽完牌後切換背景圖片
-      document.body.style.backgroundImage = "url('images/bg2.png')";
-      document.body.style.backgroundSize = "cover";
-      document.body.style.backgroundPosition = "center";
+      // ✅ 抽完牌後切換背景圖片（改為加 class）
+      document.body.classList.add("body-bg-alt");
 
       drawn = true;
     }, 5000);

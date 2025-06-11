@@ -14,6 +14,15 @@ html, body {
   min-height: 100vh;     /* ✅ 確保高度至少滿版 */
 }
 
+/* ✅ 抽牌後切換背景圖片 */
+.body-bg-alt {
+  background-image: url('images/bg2.png') !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 .container {
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 20px;
