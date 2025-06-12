@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("start-journey-btn");
   const drawBtn = document.getElementById("go-draw-btn");
 
-  if (!startBtn || !drawBtn || !pages.p1 || !pages.p4) {
+  if (!startBtn || !drawBtn || !pages.p1 || !pages.p2 || !pages.p3 || !pages.p4) {
     console.error("❌ 無法找到必要元素，請檢查 HTML 結構是否正確！");
     return;
   }
@@ -60,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("card-advice").textContent = card.advice;
       document.getElementById("card-question").textContent = card.question || '（此牌沒有提問內容）';
 
-      // ✅ 完整覆蓋背景樣式
       Object.assign(document.body.style, {
         backgroundImage: "url('bg2.png')",
         backgroundSize: "cover",
@@ -70,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
         transition: "background-image 1s ease"
       });
 
-      // ✅ 容器透明
       pages.p4.style.backgroundColor = "transparent";
 
       drawn = true;
