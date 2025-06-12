@@ -12,7 +12,8 @@ html, body {
   overflow-x: hidden;
   overflow-y: auto;
   min-height: 100vh;
-  transition: background-image 1s ease; /* ✅ 加這行讓背景平滑切換 */
+  transition: background-image 1s ease;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* ✅ 讓白字清楚可讀 */
 }
 
 .container {
@@ -66,7 +67,6 @@ video#draw-video {
   display: none;
 }
 
-/* ✅ 讓所有連結變成金色 */
 a {
   color: #ffd700;
   text-decoration: none;

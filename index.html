@@ -7,24 +7,20 @@
   <link rel="stylesheet" href="style.css?v=20250612" />
 </head>
 <body>
-  <!-- 🔊 背景音樂 -->
   <audio id="bg-music" src="music.mp3" loop></audio>
 
-  <!-- 📜 第一頁：開場 -->
   <div id="page-1" class="container">
     <h2>夢境旅人的召喚</h2>
     <p>請閉上眼睛，深呼吸，準備啟程...</p>
     <button id="start-journey-btn">啟程</button>
   </div>
 
-  <!-- 🌙 第二頁：靜心抽牌 -->
   <div id="page-2" class="container hidden">
     <h2>靜心抽牌</h2>
     <p>當你準備好，請按下按鈕。</p>
     <button id="go-draw-btn">開始抽牌</button>
   </div>
 
-  <!-- 🎥 第三頁：動畫播放 -->
   <div id="page-3" class="container hidden">
     <video id="draw-video" class="hidden" muted playsinline>
       <source src="bg.mp4" type="video/mp4" />
@@ -32,100 +28,15 @@
     </video>
   </div>
 
-  <!-- 🌟 第四頁：結果展示 -->
   <div id="page-4" class="container hidden">
     <h2 id="card-name">牌卡名稱</h2>
-    <img id="card-image" alt="抽到的牌卡" style="max-width: 300px; width: 100%; margin: 1rem 0;" />
+    <img id="card-image" alt="抽到的牌卡" />
     <p id="card-description"></p>
     <p><strong>指引：</strong> <span id="card-advice"></span></p>
     <p><strong>提問：</strong> <span id="card-question"></span></p>
   </div>
 
-  <!-- 📜 卡牌資料 JS -->
   <script src="window.cards.js?v=20250612"></script>
-
-  <!-- 🚀 主功能腳本 -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      console.log("✅ script.js 載入成功");
-
-      const cards = window.cards || [];
-      let drawn = false;
-
-      const pages = {
-        p1: document.getElementById("page-1"),
-        p2: document.getElementById("page-2"),
-        p3: document.getElementById("page-3"),
-        p4: document.getElementById("page-4")
-      };
-
-      const bgMusic = document.getElementById("bg-music");
-      const video = document.getElementById("draw-video");
-
-      const startBtn = document.getElementById("start-journey-btn");
-      const drawBtn = document.getElementById("go-draw-btn");
-
-      if (!startBtn || !drawBtn || !pages.p1 || !pages.p2 || !pages.p3 || !pages.p4) {
-        console.error("❌ 找不到必要的元素，請確認 HTML 結構正確");
-        return;
-      }
-
-      startBtn.addEventListener("click", () => {
-        pages.p1.classList.add("hidden");
-        pages.p2.classList.remove("hidden");
-
-        bgMusic.play().then(() => {
-          console.log("✅ 音樂播放成功");
-        }).catch(err => {
-          console.warn("⚠️ 音樂播放被瀏覽器攔截", err);
-        });
-      });
-
-      drawBtn.addEventListener("click", () => {
-        if (drawn) {
-          alert("你只能抽一次牌！");
-          return;
-        }
-
-        pages.p2.classList.add("hidden");
-        pages.p3.classList.remove("hidden");
-
-        video.classList.remove("hidden");
-        video.currentTime = 0;
-        video.play().catch(err => {
-          console.warn("⚠️ 影片播放錯誤：", err);
-        });
-
-        setTimeout(() => {
-          pages.p3.classList.add("hidden");
-          pages.p4.classList.remove("hidden");
-
-          const card = cards[Math.floor(Math.random() * cards.length)];
-          console.log("🎴 抽到牌卡：", card);
-
-          document.getElementById("card-name").textContent = card.name;
-          document.getElementById("card-image").src = card.img;
-          document.getElementById("card-description").textContent = card.desc;
-          document.getElementById("card-advice").textContent = card.advice;
-          document.getElementById("card-question").textContent = card.question || '（此牌沒有提問內容）';
-
-          // ✅ 背景切換
-          Object.assign(document.body.style, {
-            backgroundImage: "url('bg2.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundAttachment: "scroll",
-            transition: "background-image 1s ease"
-          });
-
-          // ✅ 背景容器透明化
-          pages.p4.style.backgroundColor = "transparent";
-
-          drawn = true;
-        }, 5000);
-      });
-    });
-  </script>
+  <script src="script.js?v=20250612"></script>
 </body>
 </html>

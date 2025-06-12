@@ -60,16 +60,19 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("card-advice").textContent = card.advice;
       document.getElementById("card-question").textContent = card.question || '（此牌沒有提問內容）';
 
+      // ✅ 100% 替換背景圖
       Object.assign(document.body.style, {
         backgroundImage: "url('bg2.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "scroll",
-        transition: "background-image 1s ease"
+        transition: "background-image 1s ease",
+        backgroundColor: "black"
       });
 
-      pages.p4.style.backgroundColor = "transparent";
+      // ✅ 容器透明處理
+      document.querySelectorAll(".container").forEach(c => c.style.backgroundColor = "transparent");
 
       drawn = true;
     }, 5000);
