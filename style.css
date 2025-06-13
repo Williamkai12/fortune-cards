@@ -84,29 +84,40 @@ a:hover {
   text-decoration: underline;
 }
 
-/* ✅ 柔和淡入效果的 intro 文本樣式 */
+/* ✅ 柔和淡入效果的 intro 文本樣式 + 文字漸層 */
 .intro-text {
   max-width: 640px;
   margin: 0 auto 2rem;
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 1.15rem;
+  line-height: 1.9;
   text-align: center;
   color: rgba(255, 255, 255, 0.95);
   animation: fadeIn 2.5s ease-out forwards;
   opacity: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+/* ✨ 文字漸入動畫 */
 @keyframes fadeIn {
   to {
     opacity: 1;
   }
 }
 
-/* 🌟 新增：讓靈魂訊息區塊稍微往下移動 */
+/* 🌟 靈魂訊息區塊增加空間 */
 .after-draw-message {
   margin-top: 3rem;
   line-height: 1.8;
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.95);
   text-align: center;
+}
+
+/* 🌈 點綴：強調詞用柔和金黃發光效果 */
+.highlight {
+  color: #ffe066;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(255, 224, 102, 0.4);
 }
