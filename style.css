@@ -101,3 +101,12 @@ a:hover {
     opacity: 1;
   }
 }
+
+/* 🌟 新增：讓靈魂訊息區塊稍微往下移動 */
+.after-draw-message {
+  margin-top: 3rem;
+  line-height: 1.8;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.95);
+  text-align: center;
+}
