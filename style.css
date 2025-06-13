@@ -122,3 +122,29 @@ a:hover {
   font-weight: bold;
   text-shadow: 0 0 6px rgba(255, 224, 102, 0.4);
 }
+
+/* 📱 手機排版優化：縮小字距與行距，改善閱讀斷裂感 */
+@media (max-width: 480px) {
+  .intro-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .container {
+    padding: 1.2rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+
+  .after-draw-message {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  #card-name {
+    font-size: 1.3rem;
+  }
+}
