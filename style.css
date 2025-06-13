@@ -30,9 +30,13 @@ html, body {
   transition: background-color 0.4s ease;
 }
 
+/* ✅ 改善第四頁可讀性：黑色遮罩 + 模糊 */
 #page-4.container {
-  background-color: transparent !important;
-  box-shadow: none !important;
+  background-color: rgba(0, 0, 0, 0.55);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 20px;
 }
 
 button {
