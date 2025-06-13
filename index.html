@@ -14,19 +14,13 @@
   <div id="page-1" class="container">
     <h2>《夢境旅人的召喚》</h2>
     <p class="intro-text">
-      閉上雙眼，深深吸一口氣……<br />
-      想像你正站在一道光與影交織的門前。<br />
-      門後，是你靈魂曾經到訪，卻遺忘的世界<br />
-      <strong>夢的世界。</strong>
+      每張牌，是一扇門；每個選擇，是一次對話。<br />
+      靜心，讓直覺帶你抽出今日的訊息。<br />
+      它將成為你靈魂此刻最需要的提醒。
     </p>
     <p class="intro-text">
       此刻，你不再是現實中的誰，<br />
       你是――<strong>夢境旅人。</strong>
-    </p>
-    <p class="intro-text">
-      每張牌，是一扇門；每個選擇，是一次對話。<br />
-      靜心，讓直覺帶你抽出今日的訊息。<br />
-      它將成為你靈魂此刻最需要的提醒。
     </p>
     <p class="intro-text">
       <strong>夢的召喚已響起，啟程吧，夢境旅人。</strong>
@@ -37,6 +31,12 @@
   <!-- 🌙 第二頁：靜心抽牌 -->
   <div id="page-2" class="container hidden">
     <h2>靜心抽牌</h2>
+    <p class="intro-text">
+      閉上雙眼，深深吸一口氣……<br />
+      想像你正站在一道光與影交織的門前。<br />
+      門後，是你靈魂曾經到訪，卻遺忘的世界<br />
+      <strong>夢的世界。</strong>
+    </p>
     <p>當你準備好，請按下按鈕。</p>
     <button id="go-draw-btn">抽牌</button>
   </div>
@@ -91,8 +91,6 @@
   <!-- 🚀 主功能腳本 -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      console.log("✅ script.js 載入成功");
-
       const cards = window.cards;
       let drawn = false;
 
@@ -108,20 +106,10 @@
       const startBtn = document.getElementById("start-journey-btn");
       const drawBtn = document.getElementById("go-draw-btn");
 
-      if (!startBtn || !drawBtn || !pages.p1 || !pages.p2 || !pages.p3 || !pages.p4) {
-        console.error("❌ 無法找到必要元素，請檢查 HTML 結構是否正確！");
-        return;
-      }
-
       startBtn.addEventListener("click", () => {
         pages.p1.classList.add("hidden");
         pages.p2.classList.remove("hidden");
-
-        bgMusic.play().then(() => {
-          console.log("✅ 音樂播放成功");
-        }).catch(err => {
-          console.warn("⚠️ 音樂播放被瀏覽器攔截", err);
-        });
+        bgMusic.play().catch(() => {});
       });
 
       drawBtn.addEventListener("click", () => {
@@ -129,22 +117,18 @@
           alert("你只能抽一次牌！");
           return;
         }
-
         pages.p2.classList.add("hidden");
         pages.p3.classList.remove("hidden");
 
         video.classList.remove("hidden");
         video.currentTime = 0;
-        video.play().catch(err => {
-          console.warn("⚠️ 影片播放錯誤：", err);
-        });
+        video.play().catch(() => {});
 
         setTimeout(() => {
           pages.p3.classList.add("hidden");
           pages.p4.classList.remove("hidden");
 
           const card = cards[Math.floor(Math.random() * cards.length)];
-          console.log("🎴 抽到牌卡：", card);
 
           document.getElementById("card-name").textContent = card.name;
           document.getElementById("card-image").src = card.img;
@@ -160,9 +144,6 @@
             backgroundAttachment: "scroll",
             transition: "background-image 1s ease"
           });
-
-          // ✅ 移除這行，讓 CSS 控制背景遮罩
-          // pages.p4.style.backgroundColor = "transparent";
 
           drawn = true;
         }, 5000);
