@@ -107,13 +107,30 @@ a:hover {
   }
 }
 
-/* 🌟 靈魂訊息區塊風格一致 */
+/* 🌟 靈魂訊息區塊風格一致，並改為左對齊 */
 .after-draw-message {
   margin-top: 3rem;
   line-height: 1.8;
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.96);
+  text-align: left;
+  padding: 0 1rem;
+}
+
+/* 🌟 Notion連結獨立置中 */
+.after-draw-link {
   text-align: center;
+  margin-top: 1.5rem;
+  font-weight: bold;
+}
+
+.after-draw-link a {
+  color: #ffe066;
+  text-decoration: none;
+}
+.after-draw-link a:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 /* 🌈 點綴：強調詞用柔和金黃發光效果 */
