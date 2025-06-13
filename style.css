@@ -14,11 +14,11 @@ html, body {
   overflow-y: auto;
   min-height: 100vh;
   transition: background-image 1s ease;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.85); /* ✅ 白字強化 */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.85);
 }
 
 .container {
-  background-color: rgba(0, 0, 0, 0.75); /* 更深一點，加強反差 */
+  background-color: rgba(0, 0, 0, 0.75);
   border-radius: 20px;
   padding: 20px;
   max-width: 640px;
@@ -30,7 +30,6 @@ html, body {
   transition: background-color 0.4s ease;
 }
 
-/* 第四頁完全透明（蓋掉背景殘影） */
 #page-4.container {
   background-color: transparent !important;
   box-shadow: none !important;
@@ -76,7 +75,6 @@ video#draw-video {
   display: none;
 }
 
-/* ✅ 醒目的金色連結樣式 */
 a {
   color: #ffd700;
   text-decoration: none;
@@ -84,4 +82,22 @@ a {
 a:hover {
   color: #ffffff;
   text-decoration: underline;
+}
+
+/* ✅ 柔和淡入效果的 intro 文本樣式 */
+.intro-text {
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.95);
+  animation: fadeIn 2.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
