@@ -30,13 +30,54 @@ html, body {
   transition: background-color 0.4s ease;
 }
 
-/* ✅ 改善第四頁可讀性：黑色遮罩 + 模糊 */
+/* ✅ 第四頁遮罩 */
 #page-4.container {
   background-color: rgba(0, 0, 0, 0.55);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 20px;
+}
+
+/* ✨ 取消置中的段落（desc/advice/question） */
+#card-description,
+#card-advice,
+#card-question {
+  text-align: left;
+  line-height: 1.7;
+  margin: 1rem 0;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+/* 📣 after-draw-message 改為左對齊 */
+.after-draw-message {
+  margin-top: 3rem;
+  line-height: 1.8;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.96);
+  text-align: left;
+}
+
+/* 👤 作者圖片與名稱置中 */
+.after-draw-message img,
+.after-draw-message p:last-child {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* 🔗 Notion 連結置中 */
+.after-draw-message a {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  color: #ffd700;
+  text-decoration: none;
+}
+.after-draw-message a:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 button {
@@ -79,16 +120,7 @@ video#draw-video {
   display: none;
 }
 
-a {
-  color: #ffd700;
-  text-decoration: none;
-}
-a:hover {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
-/* ✅ 柔和淡入效果的 intro 文本樣式（清晰白字，無陰影） */
+/* ✨ intro 字體樣式 */
 .intro-text {
   max-width: 640px;
   margin: 0 auto 2rem;
@@ -100,47 +132,20 @@ a:hover {
   color: rgba(255, 255, 255, 0.96);
 }
 
-/* ✨ 文字漸入動畫 */
 @keyframes fadeIn {
   to {
     opacity: 1;
   }
 }
 
-/* 🌟 靈魂訊息區塊風格一致，並改為左對齊 */
-.after-draw-message {
-  margin-top: 3rem;
-  line-height: 1.8;
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.96);
-  text-align: left;
-  padding: 0 1rem;
-}
-
-/* 🌟 Notion連結獨立置中 */
-.after-draw-link {
-  text-align: center;
-  margin-top: 1.5rem;
-  font-weight: bold;
-}
-
-.after-draw-link a {
-  color: #ffe066;
-  text-decoration: none;
-}
-.after-draw-link a:hover {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
-/* 🌈 點綴：強調詞用柔和金黃發光效果 */
+/* 🌈 強調字 */
 .highlight {
   color: #ffe066;
   font-weight: bold;
   text-shadow: 0 0 6px rgba(255, 224, 102, 0.4);
 }
 
-/* 📱 手機排版優化：縮小字距與行距，改善閱讀斷裂感 */
+/* 📱 手機優化 */
 @media (max-width: 480px) {
   .intro-text {
     font-size: 1rem;
