@@ -41,12 +41,20 @@ document.addEventListener("DOMContentLoaded", () => {
     pages.p2.classList.add("hidden");
     pages.p3.classList.remove("hidden");
 
-    video.classList.remove("hidden");
+    // ✅ 啟用影片漸顯 class
+    video.classList.add("active");
     video.currentTime = 0;
-    video.play().catch(err => {
-      console.warn("⚠️ 影片播放錯誤：", err);
-    });
 
+    // ✅ 延遲播放以避開手機阻擋
+    setTimeout(() => {
+      video.play().then(() => {
+        console.log("🎥 影片播放中");
+      }).catch(err => {
+        console.warn("⚠️ 手機影片播放失敗", err);
+      });
+    }, 300);
+
+    // ✅ 延遲切換到結果頁
     setTimeout(() => {
       pages.p3.classList.add("hidden");
       pages.p4.classList.remove("hidden");
@@ -60,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("card-advice").textContent = card.advice;
       document.getElementById("card-question").textContent = card.question || '（此牌沒有提問內容）';
 
-      // ✅ 100% 替換背景圖
       Object.assign(document.body.style, {
         backgroundImage: "url('bg2.png')",
         backgroundSize: "cover",
@@ -71,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
         backgroundColor: "black"
       });
 
-      // ✅ 容器透明處理
       document.querySelectorAll(".container").forEach(c => c.style.backgroundColor = "transparent");
 
       drawn = true;
